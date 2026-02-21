@@ -19,11 +19,8 @@
     --text-secondary: #94a3b8;
     --text-muted: #64748b;
     --border: #1e293b;
-    --glass: rgba(17, 24, 39, 0.7);
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   body {
     font-family: 'Barlow', sans-serif;
     background: var(--bg-dark);
@@ -31,1013 +28,383 @@
     min-height: 100vh;
     overflow-x: hidden;
   }
-
-  /* Animated background */
   body::before {
     content: '';
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: 
-      radial-gradient(ellipse 80% 50% at 20% 20%, rgba(34, 211, 238, 0.06) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 40% at 80% 80%, rgba(139, 92, 246, 0.06) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 30% at 50% 50%, rgba(245, 166, 35, 0.04) 0%, transparent 60%);
+    background:
+      radial-gradient(ellipse 80% 50% at 20% 20%, rgba(34,211,238,0.05) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 80%, rgba(139,92,246,0.05) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 30% at 50% 50%, rgba(245,166,35,0.03) 0%, transparent 60%);
     z-index: 0;
     animation: bgPulse 8s ease-in-out infinite alternate;
   }
+  @keyframes bgPulse { 0%{opacity:.6} 100%{opacity:1} }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
 
-  @keyframes bgPulse {
-    0% { opacity: 0.6; }
-    100% { opacity: 1; }
-  }
-
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* Header */
-  .header {
-    text-align: center;
-    padding: 40px 0 20px;
-    position: relative;
-  }
-
+  /* HEADER */
+  .header { text-align: center; padding: 36px 0 16px; position: relative; }
   .header::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 120px;
-    height: 2px;
+    content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 120px; height: 2px;
     background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
   }
-
   .tournament-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: linear-gradient(135deg, rgba(245, 166, 35, 0.15), rgba(245, 166, 35, 0.05));
-    border: 1px solid rgba(245, 166, 35, 0.3);
-    border-radius: 50px;
+    display: inline-flex; align-items: center; gap: 8px;
+    background: linear-gradient(135deg, rgba(245,166,35,.15), rgba(245,166,35,.05));
+    border: 1px solid rgba(245,166,35,.3); border-radius: 50px;
     padding: 6px 18px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 600;
-    font-size: 13px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--accent-gold);
-    margin-bottom: 16px;
-    animation: fadeInDown 0.6s ease;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 13px;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--accent-gold);
+    margin-bottom: 14px; animation: fadeInDown .6s ease;
   }
-
   .tournament-badge .dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent-emerald);
+    width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald);
     animation: livePulse 1.5s ease-in-out infinite;
   }
-
   @keyframes livePulse {
-    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
-    50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+    0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(16,185,129,.4)}
+    50%{opacity:.6;box-shadow:0 0 0 6px rgba(16,185,129,0)}
   }
-
   .header h1 {
     font-family: 'Oswald', sans-serif;
-    font-size: clamp(36px, 6vw, 64px);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    background: linear-gradient(135deg, #ffffff 0%, #f5a623 50%, #22d3ee 100%);
+    font-size: clamp(34px,6vw,60px); font-weight: 700;
+    text-transform: uppercase; letter-spacing: 3px;
+    background: linear-gradient(135deg, #fff 0%, #f5a623 50%, #22d3ee 100%);
     background-size: 200% 200%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: gradientShift 4s ease infinite, fadeInDown 0.8s ease;
-    line-height: 1.1;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    animation: gradientShift 4s ease infinite, fadeInDown .8s ease; line-height: 1.1;
   }
-
-  @keyframes gradientShift {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-  }
-
-  @keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
+  @keyframes gradientShift { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
+  @keyframes fadeInDown { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+  @keyframes slideUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
   .header .subtitle {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 15px;
-    color: var(--text-muted);
-    letter-spacing: 1.5px;
-    margin-top: 8px;
-    animation: fadeInDown 1s ease;
+    font-size: 15px; color: var(--text-muted); letter-spacing: 1.5px; margin-top: 8px;
+  }
+  .header .subtitle span { color: var(--accent-cyan); font-weight: 600; }
+
+  /* WEEK SELECTOR */
+  .week-selector {
+    display: flex; justify-content: center; gap: 6px; margin: 28px 0 8px;
+    flex-wrap: wrap; animation: fadeIn .8s ease .2s both;
+  }
+  .week-btn {
+    font-family: 'Oswald', sans-serif; font-size: 14px; font-weight: 600;
+    letter-spacing: .5px; text-transform: uppercase;
+    padding: 8px 18px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg-card); color: var(--text-muted);
+    cursor: pointer; transition: all .25s ease; position: relative; overflow: hidden;
+  }
+  .week-btn:hover { border-color: rgba(245,166,35,.3); color: var(--text-secondary); background: var(--bg-card-hover); }
+  .week-btn.active {
+    border-color: var(--accent-gold); color: var(--accent-gold);
+    background: rgba(245,166,35,.1); box-shadow: 0 0 16px rgba(245,166,35,.15);
+  }
+  .week-btn.current::after {
+    content: ''; position: absolute; top: 4px; right: 4px;
+    width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald);
+    animation: livePulse 1.5s ease-in-out infinite;
+  }
+  .week-btn.overall-btn {
+    background: linear-gradient(135deg, rgba(139,92,246,.1), rgba(34,211,238,.05));
+    border-color: rgba(139,92,246,.3); color: var(--accent-violet);
+  }
+  .week-btn.overall-btn.active {
+    border-color: var(--accent-violet); color: var(--accent-violet);
+    box-shadow: 0 0 16px rgba(139,92,246,.15); background: rgba(139,92,246,.15);
   }
 
-  .header .subtitle span {
-    color: var(--accent-cyan);
-    font-weight: 600;
-  }
+  /* STATS BAR */
+  .stats-bar { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin: 20px 0 28px; animation: fadeIn 1s ease .3s both; }
+  .week-stat { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-secondary); font-weight: 500; }
+  .week-stat .icon { font-size: 16px; }
+  .week-stat .value { color: var(--text-primary); font-weight: 700; font-family: 'Oswald', sans-serif; font-size: 15px; }
 
-  /* Week info bar */
-  .week-bar {
-    display: flex;
-    justify-content: center;
-    gap: 24px;
-    flex-wrap: wrap;
-    margin: 24px 0 32px;
-    animation: fadeIn 1s ease 0.3s both;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  .week-stat {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 13px;
-    color: var(--text-secondary);
-    font-weight: 500;
-  }
-
-  .week-stat .icon {
-    font-size: 16px;
-  }
-
-  .week-stat .value {
-    color: var(--text-primary);
-    font-weight: 700;
-    font-family: 'Oswald', sans-serif;
-    font-size: 15px;
-  }
-
-  /* Podium Section */
-  .podium-section {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    gap: 16px;
-    margin: 10px 0 40px;
-    padding: 0 20px;
-  }
-
-  .podium-card {
-    flex: 0 1 220px;
-    text-align: center;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    animation: podiumRise 0.8s ease both;
-  }
-
-  .podium-card:nth-child(1) { animation-delay: 0.4s; }
-  .podium-card:nth-child(2) { animation-delay: 0.2s; }
-  .podium-card:nth-child(3) { animation-delay: 0.6s; }
-
-  @keyframes podiumRise {
-    from { opacity: 0; transform: translateY(40px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
+  /* PODIUM */
+  .podium-section { display: flex; justify-content: center; align-items: flex-end; gap: 16px; margin: 10px 0 36px; padding: 0 20px; }
+  .podium-card { flex: 0 1 220px; text-align: center; cursor: pointer; transition: transform .3s ease; animation: slideUp .7s ease both; }
+  .podium-card:nth-child(1){animation-delay:.35s} .podium-card:nth-child(2){animation-delay:.15s} .podium-card:nth-child(3){animation-delay:.5s}
   .podium-card:hover { transform: translateY(-4px); }
+  .podium-inner { border-radius: 16px; padding: 24px 16px 20px; position: relative; overflow: hidden; border: 1px solid var(--border); background: var(--bg-card); }
+  .podium-card.gold .podium-inner { border-color: rgba(245,166,35,.4); background: linear-gradient(180deg, rgba(245,166,35,.1) 0%, var(--bg-card) 60%); }
+  .podium-card.silver .podium-inner { border-color: rgba(148,163,184,.3); background: linear-gradient(180deg, rgba(148,163,184,.08) 0%, var(--bg-card) 60%); }
+  .podium-card.bronze .podium-inner { border-color: rgba(217,119,6,.3); background: linear-gradient(180deg, rgba(217,119,6,.08) 0%, var(--bg-card) 60%); }
+  .podium-rank { font-family: 'Oswald', sans-serif; font-size: 38px; font-weight: 700; line-height: 1; margin-bottom: 6px; }
+  .gold .podium-rank{color:var(--accent-gold)} .silver .podium-rank{color:#94a3b8} .bronze .podium-rank{color:#d97706}
+  .podium-name { font-family: 'Oswald', sans-serif; font-size: 20px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px; }
+  .podium-points { font-family: 'Oswald', sans-serif; font-size: 34px; font-weight: 700; margin: 4px 0; }
+  .gold .podium-points{color:var(--accent-gold)} .silver .podium-points{color:var(--accent-cyan)} .bronze .podium-points{color:var(--accent-emerald)}
+  .podium-slots { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
 
-  .podium-inner {
-    border-radius: 16px;
-    padding: 24px 16px 20px;
-    position: relative;
-    overflow: hidden;
-    border: 1px solid var(--border);
-    background: var(--bg-card);
+  /* SECTION TITLE */
+  .section-title {
+    font-family: 'Oswald', sans-serif; font-size: 16px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted);
+    margin-bottom: 14px; display: flex; align-items: center; gap: 10px;
   }
+  .section-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--border), transparent); }
 
-  .podium-card.gold .podium-inner {
-    border-color: rgba(245, 166, 35, 0.4);
-    background: linear-gradient(180deg, rgba(245, 166, 35, 0.1) 0%, var(--bg-card) 60%);
+  /* TOP PERFORMERS */
+  .top-performers { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-bottom: 36px; animation: slideUp .6s ease .3s both; }
+  .performer-card {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 16px 20px; display: flex; align-items: center; gap: 14px; transition: all .2s ease;
   }
+  .performer-card:hover { border-color: rgba(245,166,35,.2); background: var(--bg-card-hover); }
+  .performer-rank-icon { font-size: 28px; line-height: 1; }
+  .performer-info { flex: 1; }
+  .performer-player { font-family: 'Oswald', sans-serif; font-size: 16px; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; }
+  .performer-manager { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+  .performer-points { font-family: 'Oswald', sans-serif; font-size: 28px; font-weight: 700; color: var(--accent-gold); }
 
-  .podium-card.silver .podium-inner {
-    border-color: rgba(148, 163, 184, 0.3);
-    background: linear-gradient(180deg, rgba(148, 163, 184, 0.08) 0%, var(--bg-card) 60%);
-  }
-
-  .podium-card.bronze .podium-inner {
-    border-color: rgba(217, 119, 6, 0.3);
-    background: linear-gradient(180deg, rgba(217, 119, 6, 0.08) 0%, var(--bg-card) 60%);
-  }
-
-  .podium-rank {
-    font-family: 'Oswald', sans-serif;
-    font-size: 40px;
-    font-weight: 700;
-    line-height: 1;
-    margin-bottom: 8px;
-  }
-
-  .gold .podium-rank { color: var(--accent-gold); }
-  .silver .podium-rank { color: #94a3b8; }
-  .bronze .podium-rank { color: #d97706; }
-
-  .podium-name {
-    font-family: 'Oswald', sans-serif;
-    font-size: 22px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 4px;
-  }
-
-  .podium-points {
-    font-family: 'Oswald', sans-serif;
-    font-size: 36px;
-    font-weight: 700;
-    margin: 4px 0;
-  }
-
-  .gold .podium-points { color: var(--accent-gold); }
-  .silver .podium-points { color: var(--accent-cyan); }
-  .bronze .podium-points { color: var(--accent-emerald); }
-
-  .podium-slots {
-    font-size: 11px;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 600;
-  }
-
-  /* Tabs */
-  .tabs {
-    display: flex;
-    justify-content: center;
-    gap: 4px;
-    margin-bottom: 24px;
-    background: var(--bg-card);
-    border-radius: 12px;
-    padding: 4px;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-    border: 1px solid var(--border);
-  }
-
-  .tab-btn {
-    flex: 1;
-    padding: 10px 16px;
-    border: none;
-    background: transparent;
-    color: var(--text-muted);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    cursor: pointer;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-  }
-
-  .tab-btn.active {
-    background: linear-gradient(135deg, rgba(245, 166, 35, 0.2), rgba(34, 211, 238, 0.1));
-    color: var(--text-primary);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  }
-
-  .tab-btn:hover:not(.active) {
-    color: var(--text-secondary);
-  }
-
-  /* Leaderboard Table */
-  .leaderboard-panel, .squads-panel {
-    animation: fadeIn 0.4s ease;
-  }
-
-  .leaderboard-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0 6px;
-    margin-bottom: 40px;
-  }
-
+  /* LEADERBOARD */
+  .leaderboard-table { width: 100%; border-collapse: separate; border-spacing: 0 5px; margin-bottom: 36px; animation: fadeIn .5s ease; }
   .leaderboard-table thead th {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    padding: 8px 16px;
-    text-align: left;
-    font-weight: 600;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--text-muted); padding: 8px 16px; text-align: left; font-weight: 600;
   }
-
-  .leaderboard-table thead th:nth-child(3),
-  .leaderboard-table thead th:nth-child(4),
-  .leaderboard-table thead th:nth-child(5) {
-    text-align: center;
-  }
-
-  .leaderboard-table tbody tr {
-    background: var(--bg-card);
-    cursor: pointer;
-    transition: all 0.2s ease;
-    animation: rowSlide 0.5s ease both;
-  }
-
-  .leaderboard-table tbody tr:nth-child(1) { animation-delay: 0.1s; }
-  .leaderboard-table tbody tr:nth-child(2) { animation-delay: 0.15s; }
-  .leaderboard-table tbody tr:nth-child(3) { animation-delay: 0.2s; }
-  .leaderboard-table tbody tr:nth-child(4) { animation-delay: 0.25s; }
-  .leaderboard-table tbody tr:nth-child(5) { animation-delay: 0.3s; }
-  .leaderboard-table tbody tr:nth-child(6) { animation-delay: 0.35s; }
-  .leaderboard-table tbody tr:nth-child(7) { animation-delay: 0.4s; }
-  .leaderboard-table tbody tr:nth-child(8) { animation-delay: 0.45s; }
-  .leaderboard-table tbody tr:nth-child(9) { animation-delay: 0.5s; }
-
-  @keyframes rowSlide {
-    from { opacity: 0; transform: translateX(-20px); }
-    to { opacity: 1; transform: translateX(0); }
-  }
-
-  .leaderboard-table tbody tr:hover {
-    background: var(--bg-card-hover);
-    transform: scale(1.005);
-  }
-
-  .leaderboard-table td {
-    padding: 14px 16px;
-    font-size: 14px;
-    border-top: 1px solid transparent;
-    border-bottom: 1px solid transparent;
-  }
-
-  .leaderboard-table td:first-child {
-    border-radius: 10px 0 0 10px;
-    border-left: 1px solid transparent;
-  }
-
-  .leaderboard-table td:last-child {
-    border-radius: 0 10px 10px 0;
-    border-right: 1px solid transparent;
-  }
-
-  .leaderboard-table tbody tr:hover td {
-    border-color: var(--border);
-  }
-
-  .rank-cell {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 700;
-    font-size: 18px;
-    color: var(--text-muted);
-    width: 50px;
-  }
-
+  .leaderboard-table thead th:nth-child(n+3) { text-align: center; }
+  .leaderboard-table tbody tr { background: var(--bg-card); cursor: pointer; transition: all .2s ease; }
+  .leaderboard-table tbody tr:hover { background: var(--bg-card-hover); transform: scale(1.003); }
+  .leaderboard-table td { padding: 12px 16px; font-size: 14px; border-top: 1px solid transparent; border-bottom: 1px solid transparent; }
+  .leaderboard-table td:first-child { border-radius: 10px 0 0 10px; border-left: 1px solid transparent; }
+  .leaderboard-table td:last-child { border-radius: 0 10px 10px 0; border-right: 1px solid transparent; }
+  .leaderboard-table tbody tr:hover td { border-color: var(--border); }
+  .rank-cell { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 18px; color: var(--text-muted); width: 50px; }
   .rank-cell.top3 { color: var(--accent-gold); }
+  .manager-cell { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 16px; text-transform: uppercase; letter-spacing: .5px; }
+  .points-cell { text-align: center; font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 20px; color: var(--accent-cyan); }
+  .slots-cell { text-align: center; }
+  .slots-bar { display: flex; gap: 3px; justify-content: center; }
+  .slot-pip { width: 8px; height: 8px; border-radius: 2px; background: var(--border); }
+  .slot-pip.used { background: var(--accent-emerald); }
+  .points-bar { width: 100%; max-width: 120px; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; margin: 4px auto 0; }
+  .points-bar-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--accent-cyan), var(--accent-emerald)); transition: width .8s ease; }
 
-  .manager-cell {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 600;
-    font-size: 16px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  .points-cell {
-    text-align: center;
-    font-family: 'Oswald', sans-serif;
-    font-weight: 700;
-    font-size: 20px;
-    color: var(--accent-cyan);
-  }
-
-  .total-points-cell {
-    text-align: center;
-    font-family: 'Oswald', sans-serif;
-    font-weight: 500;
-    font-size: 16px;
-    color: var(--text-secondary);
-  }
-
-  .slots-cell {
-    text-align: center;
-    font-size: 13px;
-    color: var(--text-muted);
-  }
-
-  .slots-bar {
-    display: flex;
-    gap: 3px;
-    justify-content: center;
-  }
-
-  .slot-pip {
-    width: 8px;
-    height: 8px;
-    border-radius: 2px;
-    background: var(--border);
-  }
-
-  .slot-pip.used {
-    background: var(--accent-emerald);
-  }
-
-  .points-bar {
-    width: 100%;
-    max-width: 120px;
-    height: 4px;
-    background: var(--border);
-    border-radius: 2px;
-    overflow: hidden;
-    margin: 4px auto 0;
-  }
-
-  .points-bar-fill {
-    height: 100%;
-    border-radius: 2px;
-    background: linear-gradient(90deg, var(--accent-cyan), var(--accent-emerald));
-    transition: width 1s ease;
-  }
-
-  /* Squad Cards */
-  .squads-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    gap: 16px;
-    margin-bottom: 40px;
-  }
-
-  .squad-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    animation: fadeIn 0.5s ease both;
-  }
-
-  .squad-card:hover {
-    border-color: rgba(245, 166, 35, 0.2);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-  }
-
-  .squad-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 20px;
-    border-bottom: 1px solid var(--border);
-    background: linear-gradient(135deg, rgba(245, 166, 35, 0.05), transparent);
-  }
-
-  .squad-header-left {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .squad-rank-badge {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 700;
-    font-size: 14px;
-    color: var(--text-muted);
-    background: rgba(255,255,255,0.05);
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .squad-card:nth-child(1) .squad-rank-badge,
-  .squad-card:nth-child(2) .squad-rank-badge,
-  .squad-card:nth-child(3) .squad-rank-badge {
-    color: var(--accent-gold);
-    background: rgba(245, 166, 35, 0.1);
-  }
-
-  .squad-manager-name {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 600;
-    font-size: 18px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  .squad-total {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 700;
-    font-size: 24px;
-    color: var(--accent-gold);
-  }
-
-  .squad-total small {
-    font-size: 11px;
-    color: var(--text-muted);
-    font-weight: 500;
-    display: block;
-    letter-spacing: 1px;
-  }
-
-  .squad-players {
-    padding: 8px 0;
-  }
-
-  .squad-player {
-    display: flex;
-    align-items: center;
-    padding: 10px 20px;
-    transition: background 0.2s;
-  }
-
-  .squad-player:hover {
-    background: rgba(255,255,255,0.02);
-  }
-
-  .player-name {
-    flex: 1;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--text-secondary);
-  }
-
-  .player-points {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 600;
-    font-size: 18px;
-    color: var(--text-primary);
-    min-width: 50px;
-    text-align: right;
-  }
-
-  .player-slots {
-    display: flex;
-    gap: 3px;
-    margin-left: 12px;
-  }
-
-  .player-slot-pip {
-    width: 6px;
-    height: 6px;
-    border-radius: 2px;
-  }
-
+  /* SQUAD CARDS */
+  .squads-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; margin-bottom: 40px; }
+  .squad-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; transition: all .3s ease; animation: slideUp .5s ease both; }
+  .squad-card:hover { border-color: rgba(245,166,35,.2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.3); }
+  .squad-header { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; border-bottom: 1px solid var(--border); background: linear-gradient(135deg, rgba(245,166,35,.05), transparent); }
+  .squad-header-left { display: flex; align-items: center; gap: 12px; }
+  .squad-rank-badge { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 14px; color: var(--text-muted); background: rgba(255,255,255,.05); width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+  .squad-card:nth-child(-n+3) .squad-rank-badge { color: var(--accent-gold); background: rgba(245,166,35,.1); }
+  .squad-manager-name { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 18px; text-transform: uppercase; letter-spacing: 1px; }
+  .squad-total { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 24px; color: var(--accent-gold); text-align: right; }
+  .squad-total small { font-size: 11px; color: var(--text-muted); font-weight: 500; display: block; letter-spacing: 1px; }
+  .squad-players { padding: 6px 0; }
+  .squad-player { display: flex; align-items: center; padding: 9px 20px; transition: background .2s; }
+  .squad-player:hover { background: rgba(255,255,255,.02); }
+  .player-name { flex: 1; font-size: 14px; font-weight: 500; color: var(--text-secondary); }
+  .player-points { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 18px; color: var(--text-primary); min-width: 50px; text-align: right; }
+  .player-points.top-scorer { color: var(--accent-gold); }
+  .player-slots { display: flex; gap: 3px; margin-left: 12px; }
+  .player-slot-pip { width: 6px; height: 6px; border-radius: 2px; }
   .player-slot-pip.used { background: var(--accent-emerald); }
   .player-slot-pip.empty { background: var(--border); }
 
-  .player-points.top-scorer {
-    color: var(--accent-gold);
-  }
+  /* LOADING */
+  .loading-overlay { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 80px 0; gap: 16px; }
+  .spinner { width: 36px; height: 36px; border: 3px solid var(--border); border-top-color: var(--accent-gold); border-radius: 50%; animation: spin .8s linear infinite; }
+  @keyframes spin { to{transform:rotate(360deg)} }
+  .loading-text { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; }
 
-  /* Footer */
-  .footer {
-    text-align: center;
-    padding: 32px 0;
-    border-top: 1px solid var(--border);
-    margin-top: 20px;
-  }
+  /* ERROR */
+  .error-banner { background: rgba(244,63,94,.1); border: 1px solid rgba(244,63,94,.3); border-radius: 10px; padding: 14px 20px; text-align: center; font-size: 13px; color: var(--accent-rose); margin-bottom: 20px; display: none; }
 
-  .footer p {
-    font-size: 12px;
-    color: var(--text-muted);
-    letter-spacing: 1px;
-  }
+  /* FOOTER */
+  .footer { text-align: center; padding: 28px 0; border-top: 1px solid var(--border); margin-top: 20px; }
+  .footer p { font-size: 12px; color: var(--text-muted); letter-spacing: 1px; }
+  .last-updated { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
 
-  .last-updated {
-    font-size: 11px;
-    color: var(--text-muted);
-    margin-top: 4px;
-  }
+  .hidden { display: none !important; }
 
-  /* Mobile */
   @media (max-width: 768px) {
-    .podium-section {
-      gap: 8px;
-      padding: 0 8px;
-    }
+    .podium-section { gap: 8px; padding: 0 8px; }
     .podium-card { flex: 0 1 140px; }
     .podium-inner { padding: 16px 10px; }
-    .podium-rank { font-size: 28px; }
-    .podium-name { font-size: 16px; }
-    .podium-points { font-size: 28px; }
+    .podium-rank { font-size: 26px; } .podium-name { font-size: 15px; } .podium-points { font-size: 26px; }
     .squads-grid { grid-template-columns: 1fr; }
-    .leaderboard-table td { padding: 10px 12px; }
-    .header h1 { letter-spacing: 1px; }
+    .leaderboard-table td { padding: 10px 10px; font-size: 13px; }
+    .week-btn { padding: 7px 12px; font-size: 12px; }
+    .top-performers { grid-template-columns: 1fr; }
   }
-
-  @media (max-width: 480px) {
-    .week-bar { gap: 12px; }
-    .podium-section { flex-wrap: wrap; }
-    .container { padding: 0 12px; }
-    .tabs { max-width: 100%; }
-  }
-
-  .hidden { display: none; }
-
-  /* Config banner */
-  .config-banner {
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(34, 211, 238, 0.1));
-    border: 1px solid rgba(139, 92, 246, 0.3);
-    border-radius: 12px;
-    padding: 16px 20px;
-    margin-bottom: 24px;
-    text-align: center;
-    font-size: 13px;
-    color: var(--text-secondary);
-    display: none;
-  }
-
-  .config-banner code {
-    background: rgba(0,0,0,0.3);
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-size: 12px;
-    color: var(--accent-cyan);
-  }
+  @media (max-width: 480px) { .container { padding: 0 12px; } .podium-section { flex-wrap: wrap; } }
 </style>
 </head>
 <body>
-
 <div class="container">
-  <!-- Header -->
   <header class="header">
-    <div class="tournament-badge">
-      <span class="dot"></span>
-      <span>WCT20 2026 • Week 4/5</span>
-    </div>
-    <h1>Rocking Fantasy</h1>
+    <div class="tournament-badge"><span class="dot"></span><span id="badgeText">WCT20 2026</span></div>
+    <h1 id="tournamentTitle">Rocking Fantasy</h1>
     <p class="subtitle">12 Managers · 60 Players · <span>1 Champion</span></p>
   </header>
 
-  <!-- Stats Bar -->
-  <div class="week-bar">
-    <div class="week-stat">
-      <span class="icon">🏏</span>
-      <span>Matches Played:</span>
-      <span class="value" id="matchesPlayed">4/5</span>
-    </div>
-    <div class="week-stat">
-      <span class="icon">⚡</span>
-      <span>Highest Score:</span>
-      <span class="value" id="highestScore">487</span>
-    </div>
-    <div class="week-stat">
-      <span class="icon">📊</span>
-      <span>Avg Points:</span>
-      <span class="value" id="avgPoints">297</span>
+  <div class="week-selector" id="weekSelector"></div>
+  <div class="error-banner" id="errorBanner"></div>
+
+  <div id="mainContent">
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="spinner"></div>
+      <div class="loading-text">Loading scores...</div>
     </div>
   </div>
 
-  <!-- Podium -->
-  <div class="podium-section">
-    <div class="podium-card silver" onclick="scrollToSquad('Lagudu')">
-      <div class="podium-inner">
-        <div class="podium-rank">2</div>
-        <div class="podium-name">Lagudu</div>
-        <div class="podium-points">409</div>
-        <div class="podium-slots">10/10 slots</div>
-      </div>
+  <div id="dashboardContent" class="hidden">
+    <div class="stats-bar" id="statsBar"></div>
+    <div class="podium-section" id="podiumSection"></div>
+    <div><div class="section-title">⚡ Top Performers</div><div class="top-performers" id="topPerformers"></div></div>
+    <div><div class="section-title">📊 Leaderboard</div>
+      <table class="leaderboard-table"><thead><tr><th>#</th><th>Manager</th><th>Points</th><th>Slots</th></tr></thead><tbody id="leaderboardBody"></tbody></table>
     </div>
-    <div class="podium-card gold" onclick="scrollToSquad('Venky')">
-      <div class="podium-inner">
-        <div class="podium-rank">🏆</div>
-        <div class="podium-name">Venky</div>
-        <div class="podium-points">487</div>
-        <div class="podium-slots">10/10 slots</div>
-      </div>
-    </div>
-    <div class="podium-card bronze" onclick="scrollToSquad('Sarath')">
-      <div class="podium-inner">
-        <div class="podium-rank">3</div>
-        <div class="podium-name">Sarath</div>
-        <div class="podium-points">343</div>
-        <div class="podium-slots">7/10 slots</div>
-      </div>
-    </div>
+    <div><div class="section-title">🏏 Squad Details</div><div class="squads-grid" id="squadsGrid"></div></div>
   </div>
 
-  <!-- Tabs -->
-  <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab('leaderboard')">Leaderboard</button>
-    <button class="tab-btn" onclick="switchTab('squads')">Squad Details</button>
-  </div>
-
-  <!-- Config Banner (shown when no API connected) -->
-  <div class="config-banner" id="configBanner">
-    🔗 To enable live updates, set your Apps Script URL in <code>APPS_SCRIPT_URL</code> at the top of this file.
-  </div>
-
-  <!-- Leaderboard Panel -->
-  <div id="leaderboardPanel" class="leaderboard-panel">
-    <table class="leaderboard-table" id="leaderboardTable">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Manager</th>
-          <th>Points (4/5)</th>
-          <th>Total Points</th>
-          <th>Slots Used</th>
-        </tr>
-      </thead>
-      <tbody id="leaderboardBody"></tbody>
-    </table>
-  </div>
-
-  <!-- Squads Panel -->
-  <div id="squadsPanel" class="squads-panel hidden">
-    <div class="squads-grid" id="squadsGrid"></div>
-  </div>
-
-  <!-- Footer -->
   <div class="footer">
-    <p>ROCKING FANTASY WCT20 2026</p>
-    <p class="last-updated" id="lastUpdated">Last updated: --</p>
+    <p id="footerTitle">ROCKING FANTASY WCT20 2026</p>
+    <p class="last-updated" id="lastUpdated">Loading...</p>
   </div>
 </div>
 
 <script>
-// ====================================================
-// CONFIGURATION
-// Replace with your deployed Apps Script Web App URL
-// to enable live data from Google Sheets.
-// Leave empty to use the embedded data below.
-// ====================================================
-const APPS_SCRIPT_URL = '';
-const REFRESH_INTERVAL = 60000; // 60 seconds
+// ═══════════════════════════════════════════════════
+// CONFIG — Your Apps Script Web App URL
+// ═══════════════════════════════════════════════════
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwnrC-x3NYIvdOeVfV8mFAmyWYbkTc4r2TF1k7Q-gfrhnooRKcMSy5Qnx5frHUHzlPl/exec';
+const REFRESH_INTERVAL = 60000;
 
-// ====================================================
-// EMBEDDED DATA (edit this when APPS_SCRIPT_URL is empty)
-// ====================================================
-const STATIC_DATA = {
-  weekInfo: { week: "4/5", totalWeeks: 5 },
-  managers: [
-    {
-      rank: 1, name: "Venky", totalPoints: 487, slotsUsed: 10,
-      players: [
-        { name: "Azmatullah Omarzai", points: 158, slots: 2 },
-        { name: "Aiden Markram", points: 119, slots: 2 },
-        { name: "Shadab Khan", points: 115, slots: 2 },
-        { name: "Ishan Kishan", points: 95, slots: 2 },
-        { name: "Jacob Bethell", points: 60, slots: 2 },
-      ]
-    },
-    {
-      rank: 2, name: "Lagudu", totalPoints: 409, slotsUsed: 10,
-      players: [
-        { name: "Shivam Dube", points: 143, slots: 2 },
-        { name: "Saim Ayub", points: 95, slots: 2 },
-        { name: "Travis Head", points: 88, slots: 2 },
-        { name: "Mohammad Nabi", points: 83, slots: 2 },
-        { name: "Glenn Maxwell", points: 62, slots: 2 },
-      ]
-    },
-    {
-      rank: 3, name: "Sarath", totalPoints: 343, slotsUsed: 7,
-      players: [
-        { name: "Pathum Nissanka", points: 167, slots: 2 },
-        { name: "Marco Jansen", points: 80, slots: 1 },
-        { name: "Rashid Khan", points: 60, slots: 2 },
-        { name: "Dasun Shanaka", points: 36, slots: 2 },
-        { name: "Romario Shepherd", points: 0, slots: 0 },
-      ]
-    },
-    {
-      rank: 4, name: "Vamsi", totalPoints: 309, slotsUsed: 8,
-      players: [
-        { name: "Sahibzada Farhan", points: 100, slots: 2 },
-        { name: "Gerhard Erasmus", points: 78, slots: 2 },
-        { name: "Tilak Varma", points: 76, slots: 2 },
-        { name: "George Dockrell", points: 55, slots: 1 },
-        { name: "Sherfane Rutherford", points: 24, slots: 1 },
-      ]
-    },
-    {
-      rank: 5, name: "Vivek", totalPoints: 307, slotsUsed: 9,
-      players: [
-        { name: "Sam Curran", points: 143, slots: 2 },
-        { name: "Jason Holder", points: 94, slots: 2 },
-        { name: "Akeal Hosein", points: 40, slots: 2 },
-        { name: "Philip Salt", points: 30, slots: 2 },
-        { name: "Arshdeep Singh", points: 0, slots: 1 },
-      ]
-    },
-    {
-      rank: 6, name: "Sandeep", totalPoints: 282, slotsUsed: 9,
-      players: [
-        { name: "Shai Hope", points: 151, slots: 2 },
-        { name: "Kusal Mendis", points: 65, slots: 2 },
-        { name: "Blessing Muzarabani", points: 40, slots: 1 },
-        { name: "Brandon King", points: 26, slots: 2 },
-        { name: "Tim Seifert", points: 19, slots: 2 },
-      ]
-    },
-    {
-      rank: 7, name: "Pikun", totalPoints: 256, slotsUsed: 10,
-      players: [
-        { name: "Adam Zampa", points: 81, slots: 2 },
-        { name: "Suryakumar Yadav", points: 66, slots: 2 },
-        { name: "Jasprit Bumrah", points: 60, slots: 2 },
-        { name: "Roston Chase", points: 49, slots: 2 },
-        { name: "Abhishek Sharma", points: 0, slots: 2 },
-      ]
-    },
-    {
-      rank: 8, name: "Vinay", totalPoints: 256, slotsUsed: 9,
-      players: [
-        { name: "Adil Rashid", points: 80, slots: 2 },
-        { name: "Finn Allen", points: 52, slots: 2 },
-        { name: "Quinton de Kock", points: 44, slots: 2 },
-        { name: "Gudakesh Motie", points: 40, slots: 2 },
-        { name: "Axar Patel", points: 40, slots: 1 },
-      ]
-    },
-    {
-      rank: 9, name: "Varma", totalPoints: 241, slotsUsed: 6,
-      players: [
-        { name: "Varun Chakaravarthy", points: 105, slots: 2 },
-        { name: "Ryan Rickelton", points: 61, slots: 2 },
-        { name: "Sikandar Raza", points: 45, slots: 1 },
-        { name: "Shubham Ranjane", points: 30, slots: 1 },
-        { name: "Matt Renshaw", points: 0, slots: 0 },
-      ]
-    },
-    {
-      rank: 10, name: "Loya", totalPoints: 236, slotsUsed: 10,
-      players: [
-        { name: "Hardik Pandya", points: 95, slots: 2 },
-        { name: "Glenn Phillips", points: 92, slots: 2 },
-        { name: "Maheesh Theekshana", points: 25, slots: 2 },
-        { name: "Mohammad Nawaz", points: 24, slots: 2 },
-        { name: "Cameron Green", points: 8, slots: 2 },
-      ]
-    },
-    {
-      rank: 11, name: "Sravan", totalPoints: 225, slotsUsed: 9,
-      players: [
-        { name: "Rachin Ravindra", points: 92, slots: 2 },
-        { name: "Salman Agha", points: 62, slots: 2 },
-        { name: "Rahmanullah Gurbaz", points: 40, slots: 2 },
-        { name: "George Munsey", points: 31, slots: 2 },
-        { name: "Lungi Ngidi", points: 20, slots: 1 },
-      ]
-    },
-    {
-      rank: 12, name: "Sriram", totalPoints: 210, slotsUsed: 8,
-      players: [
-        { name: "Mujeeb Ur Rahman", points: 70, slots: 2 },
-        { name: "Shimron Hetmyer", points: 52, slots: 2 },
-        { name: "Shaheen Afridi", points: 48, slots: 1 },
-        { name: "Shadley van Schalkwyk", points: 40, slots: 1 },
-        { name: "Jos Buttler", points: 16, slots: 2 },
-      ]
-    },
-  ]
-};
+let allData = null;
+let selectedWeek = null;
 
-// ====================================================
-// APP LOGIC
-// ====================================================
-let currentData = null;
+document.addEventListener('DOMContentLoaded', () => {
+  fetchData();
+  setInterval(fetchData, REFRESH_INTERVAL);
+});
 
-function init() {
-  if (APPS_SCRIPT_URL) {
-    fetchLiveData();
-    setInterval(fetchLiveData, REFRESH_INTERVAL);
-  } else {
-    currentData = STATIC_DATA;
-    render(currentData);
-    document.getElementById('lastUpdated').textContent = 'Static data · Edit index.html to update';
-  }
-}
-
-async function fetchLiveData() {
+async function fetchData() {
   try {
     const res = await fetch(APPS_SCRIPT_URL);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
     const data = await res.json();
-    currentData = data;
-    render(data);
-    document.getElementById('lastUpdated').textContent =
-      'Last updated: ' + new Date().toLocaleString();
+    allData = data;
+    document.getElementById('errorBanner').style.display = 'none';
+    buildWeekSelector(data);
+    if (!selectedWeek || !data.weeks[selectedWeek]) {
+      selectedWeek = data.currentWeek || Object.keys(data.weeks).pop();
+    }
+    renderWeek(selectedWeek);
+    document.getElementById('lastUpdated').textContent = 'Last updated: ' + new Date().toLocaleTimeString();
+    if (data.tournamentName) {
+      document.getElementById('tournamentTitle').textContent = data.tournamentName;
+      document.getElementById('footerTitle').textContent = data.tournamentName.toUpperCase();
+    }
+    if (data.badgeText) document.getElementById('badgeText').textContent = data.badgeText;
   } catch (err) {
     console.error('Fetch error:', err);
-    if (!currentData) {
-      currentData = STATIC_DATA;
-      render(STATIC_DATA);
-    }
+    const el = document.getElementById('errorBanner');
+    el.textContent = 'Unable to load data. Retrying... (' + err.message + ')';
+    el.style.display = 'block';
+    const lo = document.getElementById('loadingOverlay');
+    if (lo) lo.classList.add('hidden');
   }
 }
 
-function render(data) {
-  renderStats(data);
-  renderLeaderboard(data.managers);
-  renderSquads(data.managers);
+function buildWeekSelector(data) {
+  const container = document.getElementById('weekSelector');
+  const keys = Object.keys(data.weeks);
+  container.innerHTML = keys.map(key => {
+    const isCurrent = key === data.currentWeek;
+    const isOverall = key.toLowerCase() === 'overall';
+    const isActive = key === selectedWeek;
+    let cls = 'week-btn';
+    if (isActive) cls += ' active';
+    if (isCurrent) cls += ' current';
+    if (isOverall) cls += ' overall-btn';
+    return `<button class="${cls}" onclick="selectWeek('${key}')">${data.weeks[key].label || key}</button>`;
+  }).join('');
 }
 
-function renderStats(data) {
-  const managers = data.managers;
+function selectWeek(key) {
+  selectedWeek = key;
+  buildWeekSelector(allData);
+  renderWeek(key);
+}
+
+function renderWeek(weekKey) {
+  const wd = allData.weeks[weekKey];
+  if (!wd) return;
+  const managers = wd.managers.slice().sort((a,b) => b.totalPoints - a.totalPoints)
+    .map((m,i) => { m.rank = i+1; m.players.sort((a,b) => b.points - a.points); return m; });
+
+  const lo = document.getElementById('loadingOverlay');
+  if (lo) lo.classList.add('hidden');
+  const db = document.getElementById('dashboardContent');
+  db.classList.remove('hidden');
+  document.getElementById('mainContent').appendChild(db);
+
+  // Stats
   const highest = Math.max(...managers.map(m => m.totalPoints));
-  const avg = Math.round(managers.reduce((s, m) => s + m.totalPoints, 0) / managers.length);
-  document.getElementById('highestScore').textContent = highest;
-  document.getElementById('avgPoints').textContent = avg;
-}
+  const avg = Math.round(managers.reduce((s,m) => s + m.totalPoints, 0) / managers.length);
+  document.getElementById('statsBar').innerHTML = `
+    <div class="week-stat"><span class="icon">📅</span><span>${wd.label || weekKey}</span></div>
+    <div class="week-stat"><span class="icon">⚡</span><span>Highest:</span><span class="value">${highest}</span></div>
+    <div class="week-stat"><span class="icon">📊</span><span>Average:</span><span class="value">${avg}</span></div>
+    <div class="week-stat"><span class="icon">👥</span><span>Managers:</span><span class="value">${managers.length}</span></div>`;
 
-function renderLeaderboard(managers) {
-  const maxPoints = Math.max(...managers.map(m => m.totalPoints));
-  const tbody = document.getElementById('leaderboardBody');
-  tbody.innerHTML = managers.map((m, i) => {
-    // Sum actual player total for total points column
-    const playerTotal = m.players.reduce((s, p) => s + p.points, 0);
-    const barWidth = (m.totalPoints / maxPoints * 100).toFixed(1);
-    return `
-      <tr onclick="switchTab('squads'); setTimeout(() => scrollToSquad('${m.name}'), 100)">
-        <td class="rank-cell ${i < 3 ? 'top3' : ''}">${i < 3 ? ['🥇','🥈','🥉'][i] : m.rank}</td>
-        <td class="manager-cell">${m.name}</td>
-        <td class="points-cell">
-          ${m.totalPoints}
-          <div class="points-bar"><div class="points-bar-fill" style="width:${barWidth}%"></div></div>
-        </td>
-        <td class="total-points-cell">${playerTotal}</td>
-        <td class="slots-cell">
-          <div class="slots-bar">
-            ${Array.from({length: 10}, (_, j) =>
-              `<div class="slot-pip ${j < m.slotsUsed ? 'used' : ''}"></div>`
-            ).join('')}
-          </div>
-          <span style="font-size:11px;color:var(--text-muted)">${m.slotsUsed}/10</span>
-        </td>
-      </tr>
-    `;
-  }).join('');
-}
-
-function renderSquads(managers) {
-  const globalMax = Math.max(...managers.flatMap(m => m.players.map(p => p.points)));
-  const grid = document.getElementById('squadsGrid');
-  grid.innerHTML = managers.map((m) => {
-    const playerTotal = m.players.reduce((s, p) => s + p.points, 0);
-    return `
-      <div class="squad-card" data-manager="${m.name}" id="squad-${m.name}">
-        <div class="squad-header">
-          <div class="squad-header-left">
-            <div class="squad-rank-badge">#${m.rank}</div>
-            <div class="squad-manager-name">${m.name}</div>
-          </div>
-          <div class="squad-total">
-            ${m.totalPoints}
-            <small>PTS (${m.slotsUsed}/10 slots)</small>
-          </div>
-        </div>
-        <div class="squad-players">
-          ${m.players.map(p => `
-            <div class="squad-player">
-              <span class="player-name">${p.name}</span>
-              <span class="player-points ${p.points === globalMax ? 'top-scorer' : ''}">${p.points}</span>
-              <div class="player-slots">
-                ${Array.from({length: 2}, (_, j) =>
-                  `<div class="player-slot-pip ${j < p.slots ? 'used' : 'empty'}"></div>`
-                ).join('')}
-              </div>
-            </div>
-          `).join('')}
-        </div>
-      </div>
-    `;
-  }).join('');
-}
-
-function switchTab(tab) {
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  if (tab === 'leaderboard') {
-    document.querySelectorAll('.tab-btn')[0].classList.add('active');
-    document.getElementById('leaderboardPanel').classList.remove('hidden');
-    document.getElementById('squadsPanel').classList.add('hidden');
-  } else {
-    document.querySelectorAll('.tab-btn')[1].classList.add('active');
-    document.getElementById('leaderboardPanel').classList.add('hidden');
-    document.getElementById('squadsPanel').classList.remove('hidden');
+  // Podium
+  const top3 = managers.slice(0,3);
+  if (top3.length >= 3) {
+    const cls = ['silver','gold','bronze'], icons = ['2','🏆','3'], order = [1,0,2];
+    document.getElementById('podiumSection').innerHTML = order.map(i => {
+      const m = top3[i];
+      return `<div class="podium-card ${cls[i]}" onclick="scrollToSquad('${m.name}')"><div class="podium-inner">
+        <div class="podium-rank">${icons[i]}</div><div class="podium-name">${m.name}</div>
+        <div class="podium-points">${m.totalPoints}</div><div class="podium-slots">${m.slotsUsed}/10 slots</div>
+      </div></div>`;
+    }).join('');
   }
+
+  // Top Performers
+  const allPlayers = managers.flatMap(m => m.players.map(p => ({...p, manager: m.name})))
+    .sort((a,b) => b.points - a.points).slice(0,3);
+  const medals = ['🥇','🥈','🥉'];
+  document.getElementById('topPerformers').innerHTML = allPlayers.map((p,i) => `
+    <div class="performer-card"><div class="performer-rank-icon">${medals[i]}</div>
+      <div class="performer-info"><div class="performer-player">${p.name}</div><div class="performer-manager">${p.manager}'s Squad</div></div>
+      <div class="performer-points">${p.points}</div></div>`).join('');
+
+  // Leaderboard
+  const maxPts = Math.max(...managers.map(m => m.totalPoints));
+  document.getElementById('leaderboardBody').innerHTML = managers.map((m,i) => {
+    const bw = (m.totalPoints/maxPts*100).toFixed(1);
+    return `<tr onclick="scrollToSquad('${m.name}')">
+      <td class="rank-cell ${i<3?'top3':''}">${i<3?medals[i]:m.rank}</td>
+      <td class="manager-cell">${m.name}</td>
+      <td class="points-cell">${m.totalPoints}<div class="points-bar"><div class="points-bar-fill" style="width:${bw}%"></div></div></td>
+      <td class="slots-cell"><div class="slots-bar">${Array.from({length:10},(_,j)=>`<div class="slot-pip ${j<m.slotsUsed?'used':''}"></div>`).join('')}</div><span style="font-size:11px;color:var(--text-muted)">${m.slotsUsed}/10</span></td>
+    </tr>`;
+  }).join('');
+
+  // Squads
+  const globalMax = Math.max(...managers.flatMap(m => m.players.map(p => p.points)));
+  document.getElementById('squadsGrid').innerHTML = managers.map(m => `
+    <div class="squad-card" id="squad-${m.name}">
+      <div class="squad-header"><div class="squad-header-left">
+        <div class="squad-rank-badge">#${m.rank}</div><div class="squad-manager-name">${m.name}</div></div>
+        <div class="squad-total">${m.totalPoints}<small>PTS · ${m.slotsUsed}/10 SLOTS</small></div></div>
+      <div class="squad-players">${m.players.map(p => `
+        <div class="squad-player"><span class="player-name">${p.name}</span>
+          <span class="player-points ${p.points===globalMax&&p.points>0?'top-scorer':''}">${p.points}</span>
+          <div class="player-slots">${Array.from({length:p.maxSlots||2},(_,j)=>`<div class="player-slot-pip ${j<p.slots?'used':'empty'}"></div>`).join('')}</div>
+        </div>`).join('')}</div></div>`).join('');
 }
 
 function scrollToSquad(name) {
   const el = document.getElementById('squad-' + name);
-  if (el) {
-    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    el.style.borderColor = 'rgba(245, 166, 35, 0.5)';
-    setTimeout(() => el.style.borderColor = '', 2000);
-  }
+  if (el) { el.scrollIntoView({behavior:'smooth',block:'center'}); el.style.borderColor='rgba(245,166,35,.5)'; setTimeout(()=>el.style.borderColor='',2000); }
 }
-
-// Init
-document.addEventListener('DOMContentLoaded', init);
 </script>
 </body>
 </html>
