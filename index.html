@@ -285,9 +285,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function fetchData() {
   try {
-    const res = await fetch(APPS_SCRIPT_URL);
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    const data = await res.json();
+    // Use callback approach to avoid CORS issues with Apps Script redirects
+    const data = await new Promise((resolve, reject) => {
+      const callbackName = '_cb_' + Date.now();
+      const timeout = setTimeout(() => {
+        delete window[callbackName];
+        document.head.removeChild(script);
+        reject(new Error('Request timed out'));
+      }, 15000);
+
+      window[callbackName] = function(d) {
+        clearTimeout(timeout);
+        delete window[callbackName];
+        document.head.removeChild(script);
+        resolve(d);
+      };
+
+      const script = document.createElement('script');
+      script.src = APPS_SCRIPT_URL + '?callback=' + callbackName;
+      script.onerror = () => {
+        clearTimeout(timeout);
+        delete window[callbackName];
+        document.head.removeChild(script);
+        reject(new Error('Failed to load script'));
+      };
+      document.head.appendChild(script);
+    });
     allData = data;
     document.getElementById('errorBanner').style.display = 'none';
     buildWeekSelector(data);
